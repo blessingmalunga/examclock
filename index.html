@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="clock2_style.css" type="text/css" />
+	
+<head>
+		<title>SJC Clock</title>
+		</head>
+	<body>
+		<div id="content">
+		<img id="logo" src="sj-logot.png">
+		<img id="logo2" src="sj-logot.png">
+		<div id="main_clock"></div>
+		<!--yes i know its terrible but it will work :) NB Past me, why?!?!?!?! :) -->
+		<div id="exams">
+			<p id="exam_1"></p>
+			<p id="exam_2"></p>
+			<p id="exam_3"></p>
+			<p id="exam_4"></p>
+			<p id="exam_5"></p>
+			<p id="exam_6"></p>
+			<p id="exam_7"></p>
+			<p id="exam_8"></p>
+			<p id="exam_9"></p>
+			<p id="exam_10"></p>
+		</div>
+		<!-- Opening a HTML Form. -->
+		</div>
+		<div id="new_exam_form" style="display:none;">
+		<form name="new_exam_form" >
+			Exam Name:<input type="text" name="new_exam_name">
+			Start Time: <input type="time" id="new_exam_start_time" value="00:00" style="width:100px;" >
+			Duration: <input type="text" id="new_exam_duration" value="01:00" style="width:100px;">
+
+			<input type="button" value="Add exam" onclick="javascript:addExam();">
+
+		</form>
+		<p> &copy 2022 B. Malunga</p>
+		</div>
+		<input type="button" value="[-]" id="open_new_exam" onclick="open_new_exam();">
+		<script src='clock2.js'></script>
+	</body>
+
+
+</html>

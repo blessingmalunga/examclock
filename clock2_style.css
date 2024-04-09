@@ -1,0 +1,105 @@
+body {
+	background-color:#233E8F;
+}
+#heading {
+	color:#000000;
+	text-decoration: underline;
+}
+#exams {
+	font-size: 30px;
+	font-weight: bold;
+        color: white;
+        text-shadow: 0 0.5px 0 #ccc,
+          	     0 1px 0 #c9c9c9,
+          	     0 1.5px 0 #bbb,
+              	     0 2px 0 #b9b9b9,
+                     0 2.5px 0 #aaa,
+              	     0 3px 1px rgba(0,0,0,.1),
+               	     0 0 5px rgba(0,0,0,.1),
+              	     0 1px 3px rgba(0,0,0,.3),
+             	     0 3px 5px rgba(0,0,0,.2),
+              	     0 5px 10px rgba(0,0,0,.25),
+              	     0 10px 10px rgba(0,0,0,.2),
+              	     0 20px 20px rgba(0,0,0,.15);
+
+}
+
+#content {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-position: center;
+	background-repeat:no-repeat;
+	width:100%;
+	color:#000000;
+}
+
+#main_clock {
+    margin-top: -30px;
+    margin-bottom: -30px;
+	font-size: 160px;
+  color: white;
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+#meridiem {
+	font-size: 130px;
+
+}
+#new_exam_form{
+	position:absolute;
+	bottom: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width:100%;
+
+}
+
+p{
+ margin:0;
+}
+#exam_time {
+font-size:30px;	
+}
+.exam_black {
+color: black;
+}
+
+.exam_yellow {
+color:yellow;
+}
+.exam_green {
+color:blue;
+}
+
+
+#logo {
+    float:left;
+    margin-top: 30px;
+    margin-left: 10px;
+    height: 140px;
+    width: 130px;
+}
+#logo2 {
+    float:right;
+    margin-top: 30px;
+    margin-right: 10px;
+    height: 140px;
+    width: 130px;
+}
+#open_new_exam {
+        position:absolute;
+        bottom: 0px;
+	left:0px;
+}
