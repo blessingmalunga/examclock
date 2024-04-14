@@ -1,12 +1,56 @@
 var exams = new Array(); // format: name, start_time_secs, end_time_secs, extra_end_time_secs
 
+// Function to get the current date with time set to 0 hours and 0 minutes
+function getDateWithZeroTime() {
+    let date = new Date();
+    date.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0
+    return date;
+}
 
+// Function to add minutes to a JavaScript Date object
+function addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes * 60000); // 60000 milliseconds in a minute
+}
+// Function to add seconds to a given date
+function addSeconds(date, seconds) {
+    return new Date(date.getTime() + seconds * 1000); // 1000 milliseconds in a second
+}
+function addHours(date, hours) {
+    date.setHours(date.getHours() + hours);
+    return date;
+}
+function splitTime(timeString) {
+	 // Check if timeString is a string
+    if (typeof timeString !== 'string') {
+		console.log("timeString",timeString);
+        throw new Error('Input is not a string');
+    }
+
+    // Split the time string into hours and minutes
+    let [hours, minutes] = timeString.split(':').map(Number);
+    return { hours, minutes };
+}
+// Function to format a date object to HH:mm format
+function formatDateToHHMM(date) {
+    // Extract hours and minutes from the date object
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+
+    // Ensure that single-digit hours and minutes are padded with leading zeros
+    let formattedHours = (hours < 10 ? '0' : '') + hours;
+    let formattedMinutes = (minutes < 10 ? '0' : '') + minutes;
+
+    // Construct the HH:mm string
+    return formattedHours + ':' + formattedMinutes;
+}
 function addExam(){
 	// get raw input from the form
 	var add_exam_form = document.forms[0];
 	var name = add_exam_form.elements["new_exam_name"].value;
 	var start_time = add_exam_form.elements["new_exam_start_time"].value;
-	var duration = add_exam_form.elements["new_exam_duration"].value;
+	
+	var durationString = add_exam_form.elements["new_exam_duration"].value;
+	var duration =durationString;
 	duration = duration.split(":");
 	console.log(duration);
 	// get the current time and convert to secs
@@ -35,9 +79,23 @@ function addExam(){
 	//calculate end time in secs
 	var end_time_secs = start_time_secs + duration_secs;
 	var extra_end_time_secs = start_time_secs + duration_secs*1.25;
+	
+	var startDate = getDateWithZeroTime();
+	var startTimeHoursMinutes = splitTime(start_time);
+	startDate = addHours(startDate , startTimeHoursMinutes.hours);
+	startDate = addMinutes(startDate , startTimeHoursMinutes.minutes);
+	
+	var endDate = startDate;
+	var endTimeHoursMinutes = splitTime(durationString);
+	endDate = addHours(startDate , endTimeHoursMinutes.hours);
+	endDate = addMinutes(startDate , endTimeHoursMinutes.minutes);
+	
+	
 	// create an exam with the given specs and add it to the exams Array
-	var new_exam = new Array(name, start_time_secs, end_time_secs, extra_end_time_secs);
+	var new_exam = new Array(name, start_time_secs, end_time_secs, extra_end_time_secs , start_time , formatDateToHHMM(endDate));
 	exams.push(new_exam);
+	console.log("startDate" , startDate , "endDate" , endDate);
+	console.log("new_exam" , new_exam , "exams" , exams);
 	add_exam_form.elements["new_exam_name"].value = "";
 }
 
@@ -81,7 +139,7 @@ function updateCountdowns(){
 		else {
 			ongoing = false;
 		}
-
+		str = (str + ' [Start '+ exams[i][4] +'     '+ '   End '+ exams[i][5] + ']')
 		// Write the string
 		if (ongoing == true){
 			document.getElementById("exam_"+(i+1)).innerHTML = "<input type=\"button\" value=\"&times;\" style=background-color:#4CAF50 font-size: 30px; onclick=\"javascript:cancelExam("+i+");\">"+ " <b>"+ exams[i][0] + ":</b> " + str
